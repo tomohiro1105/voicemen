@@ -1,0 +1,9 @@
+.word-form 
+  = form_for(@word, url:{ controller: :home, action: :create }, html:{class:"word-form__content"}) do |f|
+    = f.label :keyword, "キーワード", class:"word-form__content__label"
+    %br/
+    = f.text_field :keyword, placeholder: "合言葉を入力してください", class:"word-form__content__field"
+    = f.label :content_url, "URL", class:"word-form__content__label"
+    %br/
+    = f.text_area :content_url, placeholder: "URLを入力してください", class:"word-form__content__url"
+    = f.submit value:"登録", class:"word-form__content__btn"

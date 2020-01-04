@@ -1,0 +1,38 @@
+.word-register{
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  top:60px;
+  background-color: lemonchiffon;
+  border: 3px solid black;
+   &__table{
+     font-family: monospace;
+     font-weight: 900;
+     text-align: center;
+     line-height: 30px;
+     font-size: 20px;
+     border-collapse: collapse;
+     border: 3px solid black;
+     &__column{
+       border-collapse: collapse;
+       border: 3px solid black;
+       width: 50%;
+ 
+     }
+     &__columns{
+       border-collapse: collapse;
+       border: 3px solid black;
+       width: 50%;
+     }
+   }
+   &__tables{
+     text-align: center;
+     line-height: 30px;
+     font-size: 20px;
+     border-collapse: collapse;
+     font-weight: 100;
+     color: rgb(97, 93, 93);
+   }
+ }
+ 
+ 

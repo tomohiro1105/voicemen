@@ -1,0 +1,7 @@
+%table.word-register
+  %tr.word-register__table
+    %th.word-register__table__column
+      キーワード
+    %td.word-register__table__column
+      URL
+  = render partial: "word_register", collection: @words,as: "word"

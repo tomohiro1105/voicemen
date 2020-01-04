@@ -1,0 +1,56 @@
+.word-form {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 500px;
+  height: 400px;
+  background-color:lemonchiffon;
+  margin: auto;
+  border-radius: 10px;
+  border: solid 3px gray;
+  &__content{
+    padding:20px 50px 50px;
+    &__label{
+      font-size: 20px;
+    }
+    &__field{
+      width: 385px;
+      height: 40px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border-color: black;
+      border-width: 2px;
+      font-size: 20px;
+      padding:0px 5px 0px 10px;
+    }
+    &__url{
+      height: 160px;
+      width: 385px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      border-color: black;
+      border-width: 2px;
+      padding:5px 5px 0px 10px;
+    }
+    &__btn{
+      width: 150px;
+      height: 30px;
+      font-size: 18px;
+      font-family: inherit;
+      background-color: cornflowerblue;
+      border-radius: 5px;
+      box-shadow: 1px 1px 1px;
+      border-color:rgb(10, 100, 200);
+      border-style: solid;
+      display: block;
+      margin: 20px auto 0px;
+      // position: absolute;
+      // left: 180px;
+      // top:340px;
+    }
+  } 
+}
