@@ -67,6 +67,7 @@ gem 'erb2haml'
 gem 'jquery-rails'
 gem 'julius'
 gem 'font_awesome5_rails'
+gem 'devise'
 
 group :production do
   gem 'pg'

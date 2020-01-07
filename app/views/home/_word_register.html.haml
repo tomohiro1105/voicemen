@@ -1,5 +1,10 @@
 %tr.word-register__tables
   %th.word-register__table__columns
-    = word.keyword
+    = link_to "/home/#{word.id}/edit", class:"word-register__table__columns__edit" do
+      = word.keyword
   %td.word-register__table__columns
-    = word.content_url
+    = link_to word.content_url ,class:"word-register__table__columns__link" do 
+      = word.content_url
+  %td.word-register__table__delete
+    = link_to "/home/#{word.id}", method: :delete, data: {confirm: "削除しますか？"} do
+      %button.word-register__table__delete__btn 削除

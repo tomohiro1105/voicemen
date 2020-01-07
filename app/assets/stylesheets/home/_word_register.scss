@@ -16,13 +16,29 @@
      &__column{
        border-collapse: collapse;
        border: 3px solid black;
-       width: 50%;
- 
+       width: 45%;
      }
      &__columns{
        border-collapse: collapse;
        border: 3px solid black;
-       width: 50%;
+       width: 45%;
+       &__edit{
+        color: rgb(97, 93, 93);
+        text-decoration: none;
+       }
+       &__link{
+         color: blue;
+       }
+     }
+     &__delete{
+      border-collapse: collapse;
+      border: 3px solid black;
+      width: 4%;
+      font-size: 15px;
+      &__btn{
+        border-radius: 5px;
+        border-width: 2px;
+      }
      }
    }
    &__tables{

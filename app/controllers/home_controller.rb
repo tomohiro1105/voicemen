@@ -15,6 +15,26 @@ class HomeController < ApplicationController
     end
   end
 
+  def edit 
+    @word = Word.find(params[:id])
+  end
+
+  def update
+    @word = Word.find(params[:id])
+    @word.update(home_params)
+    if @word.save
+      redirect_to :root, notice: 'ワード登録が完了しました'
+    else
+      redirect_to :edit_home
+    end
+  end
+
+  def destroy
+    @word = Word.find(params[:id])
+    @word.destroy
+    redirect_to :word_register_home_index
+  end
+
   def word_register
     @words = Word.all
   end
