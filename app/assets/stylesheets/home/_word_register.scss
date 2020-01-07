@@ -13,6 +13,11 @@
      font-size: 20px;
      border-collapse: collapse;
      border: 3px solid black;
+     &__number{
+      border-collapse: collapse;
+      border: 3px solid black;
+      width: 6%;
+     }
      &__column{
        border-collapse: collapse;
        border: 3px solid black;
