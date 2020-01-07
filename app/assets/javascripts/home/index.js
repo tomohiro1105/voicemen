@@ -41,6 +41,8 @@ $(document).on('turbolinks:load', function(){
         getWether();
       }else if(text === "検索"){
         getSearch();
+      }else if(text === "ビデオ"){
+        getVideo();
       }
       else{content.textContent = text}; 
   
@@ -57,6 +59,14 @@ $(document).on('turbolinks:load', function(){
    function getSearch(){
 
     var URL = '<iframe width="1200" height="1000" src="https://www.bing.com/" frameborder="0" allowfullscreen></iframe>';
+    
+    content.innerHTML = URL;
+    
+  };
+
+  function getVideo(){
+
+    var URL = '<iframe width="600" height="340" src="https://www.youtube.com/embed/_BLLaKcMrm0" frameborder="0" allowfullscreen></iframe>';
     
     content.innerHTML = URL;
     

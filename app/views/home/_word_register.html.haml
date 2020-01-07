@@ -1,5 +1,9 @@
 %tr.word-register__tables
+  %th.word-register__table__number
+    = word_counter + 1
   %th.word-register__table__columns
-    = word.keyword
+    = link_to "#", class:"word-register__table__columns__edit" do
+      = word.keyword
   %td.word-register__table__columns
-    = word.content_url
+    = link_to word.content_url ,class:"word-register__table__columns__link" do 
+      = word.content_url

@@ -13,16 +13,27 @@
      font-size: 20px;
      border-collapse: collapse;
      border: 3px solid black;
+     &__number{
+      border-collapse: collapse;
+      border: 3px solid black;
+      width: 6%;
+     }
      &__column{
        border-collapse: collapse;
        border: 3px solid black;
-       width: 50%;
- 
+       width: 47%;
      }
      &__columns{
        border-collapse: collapse;
        border: 3px solid black;
-       width: 50%;
+       width: 47%;
+       &__edit{
+        color: rgb(97, 93, 93);
+        text-decoration: none;
+       }
+       &__link{
+         color: blue;
+       }
      }
    }
    &__tables{
