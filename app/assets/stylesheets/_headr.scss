@@ -8,6 +8,11 @@
   background: linear-gradient(to bottom, rgb(255, 255, 255), #FFC778 30%, #F89174 60%,#87CEFA); 
   position: fixed;
   font-family: monospace;
+  text-decoration: none;
+  overflow: hidden;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
   z-index: 1;
   &__title{
     margin-left: 20px;
@@ -26,5 +31,11 @@
       cursor: pointer;
       color:blueviolet
     }
+  }
+  &__logout{
+    margin: 0 20px 0 auto;
+    font-size: 14px;
+    font-family: monospace;
+    color: blueviolet;
   }
  }

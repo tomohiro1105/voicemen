@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :move_to_sign_in
+
   def index
   end
 
@@ -42,5 +44,9 @@ class HomeController < ApplicationController
   private
   def home_params
     params.require(:word).permit(:keyword, :content_url)
+  end
+
+  def move_to_sign_in
+    redirect_to :new_user_registration unless user_signed_in?
   end
 end
