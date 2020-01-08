@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_action :move_to_sign_in
-
+  before_action :set_word, only: [:edit, :update, :destroy]
   def index
   end
 
@@ -18,11 +18,10 @@ class HomeController < ApplicationController
   end
 
   def edit 
-    @word = Word.find(params[:id])
+   
   end
 
-  def update
-    @word = Word.find(params[:id])
+  def update 
     @word.update(home_params)
     if @word.save
       redirect_to :root, notice: 'ワード登録が完了しました'
@@ -32,21 +31,25 @@ class HomeController < ApplicationController
   end
 
   def destroy
-    @word = Word.find(params[:id])
     @word.destroy
     redirect_to :word_register_home_index
   end
 
   def word_register
-    @words = Word.all
+    user_id = current_user.id
+    @words = Word.where(user_id: user_id)
   end
 
   private
   def home_params
-    params.require(:word).permit(:keyword, :content_url)
+    params.require(:word).permit(:keyword, :content_url).merge(user_id: current_user.id)
   end
 
   def move_to_sign_in
     redirect_to :new_user_registration unless user_signed_in?
+  end
+
+  def set_word
+    @word = Word.find(params[:id])
   end
 end
