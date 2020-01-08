@@ -1,0 +1,19 @@
+.signup-wrapper
+  .signup-box
+    %h2.signup__title ログイン
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .signup-form
+        .signup-form__field
+          = f.label :email, "Eメール"
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email",class:"signup-form__field__text"
+        .signup-form__field
+          = f.label :password, "パスワード"
+          %br/
+          = f.password_field :password, autocomplete: "current-password",class:"signup-form__field__text"
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            = f.label :remember_me, "ログイン状態を維持する"
+        .signup-form__field
+          = f.submit "ログイン", class:"signup-form__field__btn"
