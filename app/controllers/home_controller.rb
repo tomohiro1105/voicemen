@@ -37,7 +37,7 @@ class HomeController < ApplicationController
 
   def word_register
     user_id = current_user.id
-    @words = Word.where(user_id: user_id)
+    @words = Word.where(user_id: user_id).includes(:user)
   end
 
   private
