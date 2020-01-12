@@ -1,36 +1,54 @@
-upstream app_server {
-  # Unicornと連携させるための設定。アプリケーション名を自身のアプリ名に書き換えることに注意。今回であればおそらくchat-space
-  server unix:/var/www/voicemen/tmp/sockets/unicorn.sock;
-}
+app_path = File.expand_path('../../', __FILE__)
 
-# {}で囲った部分をブロックと呼ぶ。サーバの設定ができる
-server {
-  # このプログラムが接続を受け付けるポート番号
-  listen 80;
-  # 接続を受け付けるリクエストURL ここに書いていないURLではアクセスできない
-  server_name 18.177.92.15;
+#アプリケーションサーバの性能を決定する
+worker_processes 1
 
-  # クライアントからアップロードされてくるファイルの容量の上限を2ギガに設定。デフォルトは1メガなので大きめにしておく
-  client_max_body_size 2g;
+#アプリケーションの設置されているディレクトリを指定
+working_directory app_path
 
-# 接続が来た際のrootディレクトリ
-  root /var/www/voicemen/public;
+#Unicornの起動に必要なファイルの設置場所を指定
+pid "#{app_path}/tmp/pids/unicorn.pid"
 
-# assetsファイル(CSSやJavaScriptのファイルなど)にアクセスが来た際に適用される設定
-  location ^~ /assets/ {
-    gzip_static on;
-    expires max;
-    add_header Cache-Control public;
-  }
+#ポート番号を指定
+listen 3000
 
-  try_files $uri/index.html $uri @unicorn;
+#エラーのログを記録するファイルを指定
+stderr_path "#{app_path}/log/unicorn.stderr.log"
 
-  location @unicorn {
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-    proxy_redirect off;
-    proxy_pass http://app_server;
-  }
+#通常のログを記録するファイルを指定
+stdout_path "#{app_path}/log/unicorn.stdout.log"
 
-  error_page 500 502 503 504 /500.html;
-}
+#Railsアプリケーションの応答を待つ上限時間を設定
+timeout 60
+
+#以下は応用的な設定なので説明は割愛
+
+preload_app true
+GC.respond_to?(:copy_on_write_friendly=) && GC.copy_on_write_friendly = true
+
+check_client_connection false
+
+run_once = true
+
+before_fork do |server, worker|
+  defined?(ActiveRecord::Base) &&
+    ActiveRecord::Base.connection.disconnect!
+
+  if run_once
+    run_once = false # prevent from firing again
+  end
+
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if File.exist?(old_pid) && server.pid != old_pid
+    begin
+      sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
+      Process.kill(sig, File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH => e
+      logger.error e
+    end
+  end
+end
+
+after_fork do |_server, _worker|
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
+end
