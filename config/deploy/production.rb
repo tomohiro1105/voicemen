@@ -11,10 +11,7 @@ server '18.177.92.15',
    user: 'ec2-user',
    roles: %w{web db app},
    ssh_options: {
-       port: 22022,
-       user: "odatakashi", # overrides user setting above
-       keys: %w(~/.ssh/tokutoku.pem),
-       forward_agent: true
+       keys: %w(~/.ssh/tokutoku.pem)
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
    }
