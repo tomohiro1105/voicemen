@@ -12,7 +12,6 @@ server '18.177.92.15',
    roles: %w{web db app},
    ssh_options: {
        keys: %w(~/.ssh/tokutoku.pem)
-    auth_methods: %w(publickey)
 #     # password: "please use keys"
    }
 
